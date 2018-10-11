@@ -12,7 +12,11 @@ export const signUp = (userInfo) => {
                 type: types.SIGN_UP
             });
         } catch (err) {
-            console.log('Sign Up Error:', err.message);
+            //err.response.data //Node backend error
+            dispatch({
+                type: types.SIGN_UP_ERROR,
+                error: 'Error creating account'
+            });
         }
     }
 }
@@ -29,7 +33,10 @@ export const signIn = userInfo => async dispatch => {
             type: types.SIGN_IN
         });
     } catch (err) {
-        console.log('Sign In Error:', err);
+        dispatch({
+            type: types.SIGN_IN_ERROR,
+            error: 'Invalid Email and/or Password'
+        });
     }
 }
 
